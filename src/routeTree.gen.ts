@@ -10,33 +10,311 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CadastroRouteImport } from './routes/cadastro'
+import { Route as HorariosRouteImport } from './routes/horarios'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as TurmaRouteImport } from './routes/turma'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedAtividadesRouteImport } from './routes/_authenticated/atividades'
+import { Route as AuthenticatedAvisosRouteImport } from './routes/_authenticated/avisos'
+import { Route as AuthenticatedCalendarioRouteImport } from './routes/_authenticated/calendario'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedMateriaisRouteImport } from './routes/_authenticated/materiais'
+import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
+import { Route as AuthenticatedAdminAtividadesRouteImport } from './routes/_authenticated/admin_.atividades'
+import { Route as AuthenticatedAdminDisciplinasRouteImport } from './routes/_authenticated/admin_.disciplinas'
+import { Route as AuthenticatedAdminEntregasRouteImport } from './routes/_authenticated/admin_.entregas'
+import { Route as AuthenticatedAdminHorariosRouteImport } from './routes/_authenticated/admin_.horarios'
+import { Route as AuthenticatedAdminProfessoresRouteImport } from './routes/_authenticated/admin_.professores'
+import { Route as AuthenticatedAdminSugestoesRouteImport } from './routes/_authenticated/admin_.sugestoes'
+import { Route as AuthenticatedAdminUsuariosRouteImport } from './routes/_authenticated/admin_.usuarios'
+import { Route as AuthenticatedAtividadesIdRouteImport } from './routes/_authenticated/atividades_.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastroRoute = CadastroRouteImport.update({
+  id: '/cadastro',
+  path: '/cadastro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HorariosRoute = HorariosRouteImport.update({
+  id: '/horarios',
+  path: '/horarios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TurmaRoute = TurmaRouteImport.update({
+  id: '/turma',
+  path: '/turma',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAtividadesRoute = AuthenticatedAtividadesRouteImport.update({
+  id: '/atividades',
+  path: '/atividades',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAvisosRoute = AuthenticatedAvisosRouteImport.update({
+  id: '/avisos',
+  path: '/avisos',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCalendarioRoute = AuthenticatedCalendarioRouteImport.update({
+  id: '/calendario',
+  path: '/calendario',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMateriaisRoute = AuthenticatedMateriaisRouteImport.update({
+  id: '/materiais',
+  path: '/materiais',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPerfilRoute = AuthenticatedPerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAdminAtividadesRoute =
+  AuthenticatedAdminAtividadesRouteImport.update({
+    id: '/admin_/atividades',
+    path: '/admin/atividades',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminDisciplinasRoute =
+  AuthenticatedAdminDisciplinasRouteImport.update({
+    id: '/admin_/disciplinas',
+    path: '/admin/disciplinas',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminEntregasRoute =
+  AuthenticatedAdminEntregasRouteImport.update({
+    id: '/admin_/entregas',
+    path: '/admin/entregas',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminHorariosRoute =
+  AuthenticatedAdminHorariosRouteImport.update({
+    id: '/admin_/horarios',
+    path: '/admin/horarios',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminProfessoresRoute =
+  AuthenticatedAdminProfessoresRouteImport.update({
+    id: '/admin_/professores',
+    path: '/admin/professores',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminSugestoesRoute =
+  AuthenticatedAdminSugestoesRouteImport.update({
+    id: '/admin_/sugestoes',
+    path: '/admin/sugestoes',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminUsuariosRoute =
+  AuthenticatedAdminUsuariosRouteImport.update({
+    id: '/admin_/usuarios',
+    path: '/admin/usuarios',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAtividadesIdRoute =
+  AuthenticatedAtividadesIdRouteImport.update({
+    id: '/atividades_/$id',
+    path: '/atividades/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/cadastro': typeof CadastroRoute
+  '/horarios': typeof HorariosRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/turma': typeof TurmaRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/atividades': typeof AuthenticatedAtividadesRoute
+  '/avisos': typeof AuthenticatedAvisosRoute
+  '/calendario': typeof AuthenticatedCalendarioRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/materiais': typeof AuthenticatedMateriaisRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
+  '/admin/atividades': typeof AuthenticatedAdminAtividadesRoute
+  '/admin/disciplinas': typeof AuthenticatedAdminDisciplinasRoute
+  '/admin/entregas': typeof AuthenticatedAdminEntregasRoute
+  '/admin/horarios': typeof AuthenticatedAdminHorariosRoute
+  '/admin/professores': typeof AuthenticatedAdminProfessoresRoute
+  '/admin/sugestoes': typeof AuthenticatedAdminSugestoesRoute
+  '/admin/usuarios': typeof AuthenticatedAdminUsuariosRoute
+  '/atividades/$id': typeof AuthenticatedAtividadesIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/cadastro': typeof CadastroRoute
+  '/horarios': typeof HorariosRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/turma': typeof TurmaRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/atividades': typeof AuthenticatedAtividadesRoute
+  '/avisos': typeof AuthenticatedAvisosRoute
+  '/calendario': typeof AuthenticatedCalendarioRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/materiais': typeof AuthenticatedMateriaisRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
+  '/admin/atividades': typeof AuthenticatedAdminAtividadesRoute
+  '/admin/disciplinas': typeof AuthenticatedAdminDisciplinasRoute
+  '/admin/entregas': typeof AuthenticatedAdminEntregasRoute
+  '/admin/horarios': typeof AuthenticatedAdminHorariosRoute
+  '/admin/professores': typeof AuthenticatedAdminProfessoresRoute
+  '/admin/sugestoes': typeof AuthenticatedAdminSugestoesRoute
+  '/admin/usuarios': typeof AuthenticatedAdminUsuariosRoute
+  '/atividades/$id': typeof AuthenticatedAtividadesIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/cadastro': typeof CadastroRoute
+  '/horarios': typeof HorariosRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/turma': typeof TurmaRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/_authenticated/atividades': typeof AuthenticatedAtividadesRoute
+  '/_authenticated/avisos': typeof AuthenticatedAvisosRoute
+  '/_authenticated/calendario': typeof AuthenticatedCalendarioRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/materiais': typeof AuthenticatedMateriaisRoute
+  '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
+  '/_authenticated/admin_/atividades': typeof AuthenticatedAdminAtividadesRoute
+  '/_authenticated/admin_/disciplinas': typeof AuthenticatedAdminDisciplinasRoute
+  '/_authenticated/admin_/entregas': typeof AuthenticatedAdminEntregasRoute
+  '/_authenticated/admin_/horarios': typeof AuthenticatedAdminHorariosRoute
+  '/_authenticated/admin_/professores': typeof AuthenticatedAdminProfessoresRoute
+  '/_authenticated/admin_/sugestoes': typeof AuthenticatedAdminSugestoesRoute
+  '/_authenticated/admin_/usuarios': typeof AuthenticatedAdminUsuariosRoute
+  '/_authenticated/atividades_/$id': typeof AuthenticatedAtividadesIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/cadastro'
+    | '/horarios'
+    | '/login'
+    | '/reset-password'
+    | '/turma'
+    | '/admin'
+    | '/atividades'
+    | '/avisos'
+    | '/calendario'
+    | '/dashboard'
+    | '/materiais'
+    | '/perfil'
+    | '/admin/atividades'
+    | '/admin/disciplinas'
+    | '/admin/entregas'
+    | '/admin/horarios'
+    | '/admin/professores'
+    | '/admin/sugestoes'
+    | '/admin/usuarios'
+    | '/atividades/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/cadastro'
+    | '/horarios'
+    | '/login'
+    | '/reset-password'
+    | '/turma'
+    | '/admin'
+    | '/atividades'
+    | '/avisos'
+    | '/calendario'
+    | '/dashboard'
+    | '/materiais'
+    | '/perfil'
+    | '/admin/atividades'
+    | '/admin/disciplinas'
+    | '/admin/entregas'
+    | '/admin/horarios'
+    | '/admin/professores'
+    | '/admin/sugestoes'
+    | '/admin/usuarios'
+    | '/atividades/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/cadastro'
+    | '/horarios'
+    | '/login'
+    | '/reset-password'
+    | '/turma'
+    | '/_authenticated/admin'
+    | '/_authenticated/atividades'
+    | '/_authenticated/avisos'
+    | '/_authenticated/calendario'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/materiais'
+    | '/_authenticated/perfil'
+    | '/_authenticated/admin_/atividades'
+    | '/_authenticated/admin_/disciplinas'
+    | '/_authenticated/admin_/entregas'
+    | '/_authenticated/admin_/horarios'
+    | '/_authenticated/admin_/professores'
+    | '/_authenticated/admin_/sugestoes'
+    | '/_authenticated/admin_/usuarios'
+    | '/_authenticated/atividades_/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  CadastroRoute: typeof CadastroRoute
+  HorariosRoute: typeof HorariosRoute
+  LoginRoute: typeof LoginRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  TurmaRoute: typeof TurmaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +326,211 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastro': {
+      id: '/cadastro'
+      path: '/cadastro'
+      fullPath: '/cadastro'
+      preLoaderRoute: typeof CadastroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/horarios': {
+      id: '/horarios'
+      path: '/horarios'
+      fullPath: '/horarios'
+      preLoaderRoute: typeof HorariosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/turma': {
+      id: '/turma'
+      path: '/turma'
+      fullPath: '/turma'
+      preLoaderRoute: typeof TurmaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/atividades': {
+      id: '/_authenticated/atividades'
+      path: '/atividades'
+      fullPath: '/atividades'
+      preLoaderRoute: typeof AuthenticatedAtividadesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/avisos': {
+      id: '/_authenticated/avisos'
+      path: '/avisos'
+      fullPath: '/avisos'
+      preLoaderRoute: typeof AuthenticatedAvisosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/calendario': {
+      id: '/_authenticated/calendario'
+      path: '/calendario'
+      fullPath: '/calendario'
+      preLoaderRoute: typeof AuthenticatedCalendarioRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/materiais': {
+      id: '/_authenticated/materiais'
+      path: '/materiais'
+      fullPath: '/materiais'
+      preLoaderRoute: typeof AuthenticatedMateriaisRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/perfil': {
+      id: '/_authenticated/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof AuthenticatedPerfilRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin_/atividades': {
+      id: '/_authenticated/admin_/atividades'
+      path: '/admin/atividades'
+      fullPath: '/admin/atividades'
+      preLoaderRoute: typeof AuthenticatedAdminAtividadesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin_/disciplinas': {
+      id: '/_authenticated/admin_/disciplinas'
+      path: '/admin/disciplinas'
+      fullPath: '/admin/disciplinas'
+      preLoaderRoute: typeof AuthenticatedAdminDisciplinasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin_/entregas': {
+      id: '/_authenticated/admin_/entregas'
+      path: '/admin/entregas'
+      fullPath: '/admin/entregas'
+      preLoaderRoute: typeof AuthenticatedAdminEntregasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin_/horarios': {
+      id: '/_authenticated/admin_/horarios'
+      path: '/admin/horarios'
+      fullPath: '/admin/horarios'
+      preLoaderRoute: typeof AuthenticatedAdminHorariosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin_/professores': {
+      id: '/_authenticated/admin_/professores'
+      path: '/admin/professores'
+      fullPath: '/admin/professores'
+      preLoaderRoute: typeof AuthenticatedAdminProfessoresRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin_/sugestoes': {
+      id: '/_authenticated/admin_/sugestoes'
+      path: '/admin/sugestoes'
+      fullPath: '/admin/sugestoes'
+      preLoaderRoute: typeof AuthenticatedAdminSugestoesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin_/usuarios': {
+      id: '/_authenticated/admin_/usuarios'
+      path: '/admin/usuarios'
+      fullPath: '/admin/usuarios'
+      preLoaderRoute: typeof AuthenticatedAdminUsuariosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/atividades_/$id': {
+      id: '/_authenticated/atividades_/$id'
+      path: '/atividades/$id'
+      fullPath: '/atividades/$id'
+      preLoaderRoute: typeof AuthenticatedAtividadesIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedAtividadesRoute: typeof AuthenticatedAtividadesRoute
+  AuthenticatedAvisosRoute: typeof AuthenticatedAvisosRoute
+  AuthenticatedCalendarioRoute: typeof AuthenticatedCalendarioRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedMateriaisRoute: typeof AuthenticatedMateriaisRoute
+  AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
+  AuthenticatedAdminAtividadesRoute: typeof AuthenticatedAdminAtividadesRoute
+  AuthenticatedAdminDisciplinasRoute: typeof AuthenticatedAdminDisciplinasRoute
+  AuthenticatedAdminEntregasRoute: typeof AuthenticatedAdminEntregasRoute
+  AuthenticatedAdminHorariosRoute: typeof AuthenticatedAdminHorariosRoute
+  AuthenticatedAdminProfessoresRoute: typeof AuthenticatedAdminProfessoresRoute
+  AuthenticatedAdminSugestoesRoute: typeof AuthenticatedAdminSugestoesRoute
+  AuthenticatedAdminUsuariosRoute: typeof AuthenticatedAdminUsuariosRoute
+  AuthenticatedAtividadesIdRoute: typeof AuthenticatedAtividadesIdRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+  AuthenticatedAtividadesRoute: AuthenticatedAtividadesRoute,
+  AuthenticatedAvisosRoute: AuthenticatedAvisosRoute,
+  AuthenticatedCalendarioRoute: AuthenticatedCalendarioRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedMateriaisRoute: AuthenticatedMateriaisRoute,
+  AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
+  AuthenticatedAdminAtividadesRoute: AuthenticatedAdminAtividadesRoute,
+  AuthenticatedAdminDisciplinasRoute: AuthenticatedAdminDisciplinasRoute,
+  AuthenticatedAdminEntregasRoute: AuthenticatedAdminEntregasRoute,
+  AuthenticatedAdminHorariosRoute: AuthenticatedAdminHorariosRoute,
+  AuthenticatedAdminProfessoresRoute: AuthenticatedAdminProfessoresRoute,
+  AuthenticatedAdminSugestoesRoute: AuthenticatedAdminSugestoesRoute,
+  AuthenticatedAdminUsuariosRoute: AuthenticatedAdminUsuariosRoute,
+  AuthenticatedAtividadesIdRoute: AuthenticatedAtividadesIdRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  CadastroRoute: CadastroRoute,
+  HorariosRoute: HorariosRoute,
+  LoginRoute: LoginRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  TurmaRoute: TurmaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

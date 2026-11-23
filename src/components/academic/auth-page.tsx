@@ -1,0 +1,27 @@
+import { useState, type FormEvent } from 'react';
+import { Link, useNavigate } from '@tanstack/react-router';
+import { z } from 'zod';
+import { ArrowRight, ShieldCheck, Mail, ArrowLeft } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { Button } from '@/components/ui/button';
+import { Shell, Brand } from './shell';
+export function AuthPage({ initial = 'login' }: { initial?: 'login' | 'signup' | 'forgot' | 'reset' }) {
+ const [mode,setMode] = useState(initial); const [busy,setBusy] = useState(false); const [error,setError] = useState(''); const [message,setMessage] = useState(''); const navigate = useNavigate();
+ async function submit(e:FormEvent<HTMLFormElement>) {
+  e.preventDefault(); setError(''); setMessage(''); const form = new FormData(e.currentTarget);
+  const email = String(form.get('email') ?? ''); const password=String(form.get('password')??''); const name=String(form.get('name')??''); const confirm=String(form.get('confirm')??'');
+  if(mode!=='reset' && !z.string().email().safeParse(email).success) { setError('Informe um e-mail válido.'); return; }
+  if(mode!=='forgot' && password.length<8) { setError('Sua senha precisa ter pelo menos 8 caracteres.'); return; }
+  if((mode==='signup'||mode==='reset') && password!==confirm) { setError('As senhas não são iguais.'); return; }
+  if(mode==='signup' && name.trim().length<3) { setError('Informe seu nome completo.'); return; }
+  setBusy(true);
+  try {
+   if(mode==='login') { const {error:err}=await supabase.auth.signInWithPassword({email,password}); if(err) throw new Error('Não foi possível entrar. Confira o e-mail, a senha e a confirmação da sua conta.'); await navigate({to:'/'}); }
+   if(mode==='signup') { const {data,error:err}=await supabase.auth.signUp({email,password,options:{data:{full_name:name.trim()},emailRedirectTo:window.location.origin}}); if(err) throw new Error('Não foi possível criar sua conta. Tente novamente.'); if(data.session) await navigate({to:'/'}); else setMessage('Confira seu e-mail para confirmar o cadastro. Depois, entre na sua conta.'); }
+   if(mode==='forgot') { const {error:err}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:`${window.location.origin}/reset-password`}); if(err) throw new Error('Não foi possível enviar o e-mail. Tente novamente em alguns minutos.'); setMessage('Se esse e-mail estiver cadastrado, você receberá um link para redefinir sua senha.'); }
+   if(mode==='reset') { const hash=new URLSearchParams(window.location.hash.slice(1)); const {data}=await supabase.auth.getUser(); if(!data.user || (hash.has('type') && hash.get('type')!=='recovery')) throw new Error('Abra o link de recuperação enviado para seu e-mail.'); const {error:err}=await supabase.auth.updateUser({password}); if(err) throw new Error('Não foi possível alterar sua senha. Solicite um novo link.'); setMessage('Senha redefinida com sucesso. Você pode voltar ao início.'); }
+  } catch(err) { setError(err instanceof Error?err.message:'Não foi possível concluir.'); } finally { setBusy(false); }
+ }
+ const title=mode==='signup'?'Faça parte da nossa turma':mode==='forgot'?'Recuperar senha':mode==='reset'?'Crie uma nova senha':'Bem-vindo de volta';
+ return <Shell><section className="auth-panel"><Brand/><h1 className="page-title mt-8">{title}</h1><p className="page-subtitle mb-7">{mode==='login'?'Entre para acompanhar sua jornada acadêmica.':mode==='signup'?'Sua organização acadêmica começa aqui.':'Vamos ajudar você a acessar sua conta.'}</p><form onSubmit={submit} className="dialog-form">{mode==='signup'&&<label className="field">Nome completo<input name="name" required autoComplete="name"/></label>}{mode!=='reset'&&<label className="field">E-mail<input name="email" type="email" required autoComplete="email"/></label>}{mode!=='forgot'&&<label className="field">{mode==='reset'?'Nova senha':'Senha'}<input name="password" type="password" minLength={8} required autoComplete={mode==='login'?'current-password':'new-password'}/></label>}{(mode==='signup'||mode==='reset')&&<label className="field">Confirme a senha<input name="confirm" type="password" minLength={8} required autoComplete="new-password"/></label>}{mode==='login'&&<Button type="button" variant="link" className="justify-end p-0 h-auto text-xs" onClick={()=>{setMode('forgot');setError('');setMessage('');}}>Esqueci minha senha</Button>}{error&&<p role="alert" className="text-destructive text-xs leading-6">{error}</p>}{message&&<p role="status" className="rounded-md bg-secondary p-4 text-primary text-xs leading-6"><Mail size={18} className="mb-2"/>{message}</p>}<Button type="submit" disabled={busy}>{busy?'Aguarde…':mode==='login'?'Entrar na minha conta':mode==='signup'?'Criar minha conta':mode==='forgot'?'Enviar link de recuperação':'Salvar nova senha'}<ArrowRight/></Button></form>{mode==='login'?<p className="mt-6 text-xs text-muted-foreground text-center">Ainda não tem uma conta? <Button variant="link" size="sm" onClick={()=>setMode('signup')}>Cadastre-se</Button></p>:mode==='reset'?<Button asChild variant="link" className="mt-4"><Link to="/">Voltar ao início</Link></Button>:<Button variant="link" className="mt-4" onClick={()=>{setMode('login');setError('');setMessage('');}}><ArrowLeft/>Voltar para o login</Button>}<div className="mt-8 border-t border-border pt-5 flex items-center justify-center gap-2 text-[10px] text-muted-foreground"><ShieldCheck size={14}/>Seus dados protegidos. Sua turma conectada.</div></section></Shell>;
+}
