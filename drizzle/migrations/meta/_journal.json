@@ -8,6 +8,13 @@
       "when": 1795371252455,
       "tag": "0000_renova_academic_foundation",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795490866213,
+      "tag": "0001_teachers_and_admin",
+      "breakpoints": true
     }
   ]
 }
